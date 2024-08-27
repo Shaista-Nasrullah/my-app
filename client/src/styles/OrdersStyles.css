@@ -1,0 +1,52 @@
+.dashboard {
+  margin-top: 64px;
+}
+
+.card {
+  padding: 10px;
+}
+
+.table th,
+.table td {
+  text-align: center;
+  vertical-align: middle;
+}
+
+@media (max-width: 767px) {
+  .table th,
+  .table td {
+    font-size: 12px;
+  }
+
+  .card {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .card img {
+    width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+  }
+}
+
+@media (max-width: 576px) {
+  .dashboard {
+    padding: 15px;
+  }
+
+  .card {
+    padding: 5px;
+  }
+
+  .table th,
+  .table td {
+    font-size: 10px;
+  }
+
+  .card img {
+    width: 100%;
+    height: auto;
+  }
+}

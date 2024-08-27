@@ -1,0 +1,33 @@
+{
+  "emojisense.languages": {
+
+    
+    
+    "markdown": true,
+    "plaintext": {
+      "markupCompletionsEnabled": true,
+      "emojiDecoratorsEnabled": true
+    },
+    "javascript.validate.enable":false,
+    "abap":true,
+    "bat":false,
+    "bibtext":true,
+    
+    "clojure":true,
+
+    "coffeescript":true,
+
+    "c":true,
+
+    "cpp":false,
+
+    "csharp":true,
+
+    "css":true,
+
+    "json":false,
+    
+    "scminput": true,
+    "git-commit": true
+  }
+}
