@@ -3,14 +3,14 @@
   "version": "1.0.0",
   "main": "server.js",
   "type": "module",
- "scripts": {
-  "start": "node server.js",
-  "server": "nodemon server.js",
-  "client": "npm start --prefix ../client",  
-  "dev": "concurrently \"npm run start\" \"npm run client\""
-},
-"engines": {
-    "node": "20.x"
+  "scripts": {
+    "start": "node server.js",
+    "server": "nodemon server.js",
+    "client": "npm start --prefix ../client",  
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "engines": {
+    "node": "20.13.1"
   },
   "keywords": [],
   "author": "shaista",
@@ -35,3 +35,6 @@
   },
   "proxy": "http://localhost:8080"
 }
+
+
+
