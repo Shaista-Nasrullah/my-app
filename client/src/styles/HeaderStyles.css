@@ -1,0 +1,38 @@
+.contact-info{
+  font-size: 12px;
+}
+.nav-links{
+  font-size: 19px;
+  font-weight: 500;
+  color: #212934;
+}
+.nav-links:hover{
+  color: green !important;
+}
+.nav-items{
+  margin-right: 5px;
+  padding: 2px;
+}
+.nav-icon{
+  margin-right: 5px;
+}
+.cart{
+  top: 1rem;
+  right: 3.5rem;
+  padding: 0px 6px;
+  font-size: small;
+  background: rgb(221, 221, 221);
+}
+.card-item{
+  padding: 9px;
+  padding-left: 10px;
+  padding-top: 3px;
+}
+
+
+@media (max-width: 768px){
+   
+   .email{
+     display: none;
+   }
+}
