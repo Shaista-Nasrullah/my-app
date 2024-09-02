@@ -260,7 +260,6 @@ export const orderStatusController = async (req, res) => {
     );
     res.json(orders);
   } catch (error) {
-    console.log(error);
     res.status(500).send({
       success: false,
       message: "Error while updating order status",
@@ -275,7 +274,6 @@ export const getAllUsersController = async (req, res) => {
 
     res.json(users);
   } catch (error) {
-    console.error("Error fetching users:", error); // Add detailed logging
     res
       .status(500)
       .json({ success: false, message: "Failed to fetch users", error });

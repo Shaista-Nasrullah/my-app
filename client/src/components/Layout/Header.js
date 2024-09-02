@@ -64,17 +64,7 @@ const Header = () => {
       {/* Main Navbar */}
       <nav className="navbar navbar-expand-lg bg-body-tertiary">
         <div className="container d-flex justify-content-between">
-          <div>
-            <h2 className="text-success">Silver Gem Heaven</h2>
-          </div>
-          <div className="d-flex">
-            <Searchinput />
-            <NavLink to="/cart" className="nav-link card-item">
-              <Badge count={cart?.length} showZero offset={[10, -5]}>
-                🛒
-              </Badge>
-            </NavLink>
-          </div>
+          {/* Hamburger Button on the Left */}
           <button
             className="navbar-toggler"
             type="button"
@@ -86,10 +76,25 @@ const Header = () => {
           >
             <span className="navbar-toggler-icon" />
           </button>
+
+          {/* Brand Name */}
+          <div>
+            <h2 className="text-success">New Haji Jewellers</h2>
+          </div>
+          
+          {/* Search Input and Cart */}
+          <div className="d-flex">
+            <Searchinput />
+            <NavLink to="/cart" className="nav-link card-item">
+              <Badge count={cart?.length} showZero offset={[10, -5]}>
+                🛒
+              </Badge>
+            </NavLink>
+          </div>
         </div>
 
         <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
-          <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
+          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
               <NavLink to="/" className="nav-link">
                 Home
@@ -176,3 +181,4 @@ const Header = () => {
 };
 
 export default Header;
+
