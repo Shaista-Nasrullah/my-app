@@ -20,7 +20,6 @@ const HomePage = () => {
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
 
-  // Get all categories
   const getAllCategory = async () => {
     try {
       const { data } = await axios.get(
@@ -39,7 +38,6 @@ const HomePage = () => {
     getTotal();
   }, []);
 
-  // Get all products
   const getAllProducts = async () => {
     try {
       setLoading(true);
@@ -50,11 +48,9 @@ const HomePage = () => {
       setProducts(data.products);
     } catch (error) {
       setLoading(false);
-      //console.log(error);
     }
   };
 
-  // Get total count
   const getTotal = async () => {
     try {
       const { data } = await axios.get(
@@ -62,7 +58,7 @@ const HomePage = () => {
       );
       setTotal(data?.total);
     } catch (error) {
-      //console.log(error);
+      console.log(error);
     }
   };
 
@@ -71,7 +67,6 @@ const HomePage = () => {
     loadMore();
   }, [page]);
 
-  // Load more products
   const loadMore = async () => {
     try {
       setLoading(true);
@@ -81,12 +76,10 @@ const HomePage = () => {
       setLoading(false);
       setProducts([...products, ...data?.products]);
     } catch (error) {
-      //console.log(error);
       setLoading(false);
     }
   };
 
-  // Fetch products when filters change
   useEffect(() => {
     if (checked.length || radio.length) {
       filterProduct();
@@ -95,7 +88,6 @@ const HomePage = () => {
     }
   }, [checked, radio]);
 
-  // Filtering products function
   const filterProduct = async () => {
     try {
       const { data } = await axios.post(
@@ -108,7 +100,6 @@ const HomePage = () => {
     }
   };
 
-  // Filter by Category Component
   const FilterByCategory = ({ categories, onFilter }) => {
     const [showCategoryFilters, setShowCategoryFilters] = useState(false);
 
@@ -149,7 +140,6 @@ const HomePage = () => {
     );
   };
 
-  // Filter by Price Component
   const FilterByPrice = ({ onFilter }) => {
     const [showPriceFilters, setShowPriceFilters] = useState(false);
 
@@ -185,10 +175,14 @@ const HomePage = () => {
     );
   };
 
+  const addToCart = (product) => {
+    setCart([...cart, product]);
+    localStorage.setItem("cart", JSON.stringify([...cart, product]));
+    toast.success("Item Added to cart");
+  };
+
   return (
     <Layout title={"All Products - Best Offers"}>
-      {/* banner image */}
-
       <img
         src="/images/these.png"
         className="banner-img"
@@ -196,43 +190,65 @@ const HomePage = () => {
         width={"100%"}
       />
 
-      {/* banner image */}
       <div className="container-fluid row mt-3 home-page">
         <div className="d-flex justify-content-between align-items-center mb-3">
-          {/* Align filter buttons on left and right side */}
           <FilterByCategory categories={categories} onFilter={setChecked} />
           <FilterByPrice onFilter={setRadio} />
         </div>
 
-        {/* Reset filters */}
         <div className="d-flex justify-content-center my-3">
           <button
-            className="all-products-button"
+            className="all-products"
             onClick={() => window.location.reload()}
           >
             All Products
           </button>
         </div>
 
-        <div className="col-md-12">
-          <div className="d-flex flex-wrap">
+        <div className="col-md-12 gallery">
+          <div className="d-flex flex-wrap justify-content-center">
             {products?.map((p) => (
               <div
-                className="card m-3"
+                className="content"
                 key={p._id}
                 onClick={() => navigate(`/product/${p.slug}`)}
               >
-                <img src={p.photo2} className="card-img-top" alt={p.name} />
-                <div className="card-body">
-                  <div className="card-name-price">
-                    <h5 className="card-title">{p.name}</h5>
-                    <h5 className="card-title card-price">
-                      {p.price.toLocaleString("en-PK", {
-                        style: "currency",
-                        currency: "PKR",
-                      })}
-                    </h5>
-                  </div>
+                <img src={p.photo2} alt={p.name} />
+                <div>
+                  <h3>{p.name}</h3>
+                  <p>{p.description}</p>
+                  <h6>
+                    {p.price.toLocaleString("en-PK", {
+                      style: "currency",
+                      currency: "PKR",
+                    })}
+                  </h6>
+                  <ul>
+                    <li>
+                      <i className="fa fa-star checked"></i>
+                    </li>
+                    <li>
+                      <i className="fa fa-star checked"></i>
+                    </li>
+                    <li>
+                      <i className="fa fa-star checked"></i>
+                    </li>
+                    <li>
+                      <i className="fa fa-star checked"></i>
+                    </li>
+                    <li>
+                      <i className="fa fa-star"></i>
+                    </li>
+                  </ul>
+                  <button
+                    className="buy-design"
+                    onClick={(e) => {
+                      e.stopPropagation(); // Prevents card click event
+                      addToCart(p);
+                    }}
+                  >
+                    Add to Cart
+                  </button>
                 </div>
               </div>
             ))}
@@ -250,7 +266,6 @@ const HomePage = () => {
                   "Loading ..."
                 ) : (
                   <>
-                    {" "}
                     Load more <AiOutlineReload />
                   </>
                 )}

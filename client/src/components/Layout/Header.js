@@ -46,14 +46,23 @@ const Header = () => {
               </a>
             </div>
             <div>
-              <a href="#" className="text-white">
+              <a
+                href="https://www.facebook.com/share/kcGCaoEvJZ9SUqPL/?mibextid=LQQJ4d"
+                className="text-white"
+              >
                 <i className="fa-brands fa-facebook me-2" />
               </a>
-              <a href="#" className="text-white">
+              <a
+                href="https://www.instagram.com/wahidaali13/"
+                className="text-white"
+              >
                 <i className="fa-brands fa-instagram me-2" />
               </a>
-              <a href="#" className="text-white">
-                <i className="fa-brands fa-twitter me-2" />
+              <a
+                href="https://www.tiktok.com/@shaista.nasrullah?_t=8pUTj5JDiEB&_r=1"
+                className="text-white"
+              >
+                <i className="fa-brands fa-tiktok me-2" />
               </a>
             </div>
           </div>
@@ -62,7 +71,7 @@ const Header = () => {
       {/* <!---------first nav ends---------> */}
 
       {/* Main Navbar */}
-      <nav className="navbar navbar-expand-lg bg-body-tertiary">
+      <nav className="navbar navbar-expand-lg bg-body-tertiary sticky-header">
         <div className="container d-flex justify-content-between">
           {/* Hamburger Button on the Left */}
           <button
@@ -78,10 +87,13 @@ const Header = () => {
           </button>
 
           {/* Brand Name */}
-          <div>
-            <h2 className="text-success">New Haji Jewellers</h2>
+          {/* Brand Name - Now Clickable */}
+          <div className="d-flex align-items-center">
+            <NavLink to="/" className="navbar-brand">
+              <p className="text-success">Haji Jewellers</p>
+            </NavLink>
           </div>
-          
+
           {/* Search Input and Cart */}
           <div className="d-flex">
             <Searchinput />
@@ -181,4 +193,3 @@ const Header = () => {
 };
 
 export default Header;
-

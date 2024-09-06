@@ -7,11 +7,11 @@ const About = () => {
     <Layout title={"About Silver Rings and Natural Stones"}>
       <div className="about">
         <div className="image-container">
-          <img
-            src="/images/about.avif"
-            alt="Silver Rings"
-            className="about-image"
-          />
+          {/* Add your video here */}
+      <video width="600" height="400" controls>
+        <source src="/images/making.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
         </div>
         <div className="text-container">
           <h1 className="about-title">Our Story</h1>

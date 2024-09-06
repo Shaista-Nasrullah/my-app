@@ -16,6 +16,9 @@
 .nav-icon{
   margin-right: 5px;
 }
+.navbar-brand{
+  align-items: center;
+}
 .cart{
   top: 1rem;
   right: 3.5rem;
@@ -28,14 +31,23 @@
   padding-left: 10px;
   padding-top: 3px;
 }
-
-
+.sticky-header {
+  position: -webkit-sticky; /* For Safari */
+  position: sticky;
+  top: 0;
+  z-index: 1000; /* Keeps it on top of other content */
+  background-color: #ffffff; /* Set a background color to prevent transparency */
+  box-shadow: 0 4px 2px -2px gray; /* Optional shadow effect */
+  width: 100%;
+}
 
 
 
 
 @media (max-width: 768px){
-   
+   .navbar-brand{
+    font-size: 10px;
+   }
    .email{
      display: none;
    }
