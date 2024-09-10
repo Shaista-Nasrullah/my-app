@@ -40,18 +40,27 @@ export const createProductController = async (req, res) => {
     }
 
     const photooneLocalPath = req.files?.photo2?.[0]?.path;
-    const phototwoLocalPath = req.files?.photo3?.[0]?.path;
+
+    let phototwoLocalPath;
+
+    if (
+      req.files &&
+      Array.isArray(req.files.photo3) &&
+      req.files.photo3.length > 0
+    ) {
+      phototwoLocalPath = req.files.photo3[0].path;
+    }
 
     if (!photooneLocalPath) {
       return res.status(400).send({
         message: "Second photo of product is required",
       });
     }
-    if (!phototwoLocalPath) {
-      return res.status(400).send({
-        message: "Third photo of product is required",
-      });
-    }
+    // if (!phototwoLocalPath) {
+    //   return res.status(400).send({
+    //     message: "Third photo of product is required",
+    //   });
+    // }
 
     const photo2 = await uploadOnCloudinary(photooneLocalPath);
     if (!photo2) {
@@ -61,11 +70,11 @@ export const createProductController = async (req, res) => {
     }
 
     const photo3 = await uploadOnCloudinary(phototwoLocalPath);
-    if (!photo3) {
-      return res.status(400).send({
-        message: "Error uploading the third photo",
-      });
-    }
+    // if (!photo3) {
+    //   return res.status(400).send({
+    //     message: "Error uploading the third photo",
+    //   });
+    // }
 
     const product = await productModel.create({
       name,
@@ -74,7 +83,7 @@ export const createProductController = async (req, res) => {
       price,
       category,
       photo2: photo2.url,
-      photo3: photo3.url,
+      photo3: photo3?.url || "",
       quantity,
     });
 

@@ -4,6 +4,7 @@ import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import { useCart } from "../context/ProductCard";
+import { Helmet } from "react-helmet"; // Import Helmet for SEO
 import "../styles/ProductDetailsStyles.css";
 
 const ProductDetails = () => {
@@ -13,12 +14,10 @@ const ProductDetails = () => {
   const [product, setProduct] = useState({});
   const [relatedProducts, setRelatedProducts] = useState([]);
 
-  // Initial detail
   useEffect(() => {
     if (params?.slug) getProduct();
   }, [params?.slug]);
 
-  // Get Product
   const getProduct = async () => {
     try {
       const { data } = await axios.get(
@@ -31,7 +30,6 @@ const ProductDetails = () => {
     }
   };
 
-  // Get similar products
   const getSimilarProduct = async (pid, cid) => {
     try {
       const { data } = await axios.get(
@@ -45,6 +43,23 @@ const ProductDetails = () => {
 
   return (
     <Layout>
+      <Helmet>
+        <meta charSet="utf-8" />
+        {/* SEO Meta Tags */}
+        <meta name="description" content={`${product.name} - ${product.description}. Buy now at Haji Jewellers. Price: ${product?.price?.toLocaleString("en-PK", { style: "currency", currency: "PKR" })}.`} />
+        <meta name="keywords" content={`${product.name}, ${product.category?.name}, jewelry, Haji Jewellers, buy ${product.name}, ${product.category?.name} jewelry`} />
+        <meta name="author" content="Haji Jewellers" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>{product.name} | Product Details | Haji Jewellers</title>
+
+        {/* Open Graph Meta Tags for Social Media */}
+        <meta property="og:title" content={`${product.name} | Product Details | Haji Jewellers`} />
+        <meta property="og:description" content={`${product.name} - ${product.description}. Buy now at Haji Jewellers. Price: ${product?.price?.toLocaleString("en-PK", { style: "currency", currency: "PKR" })}.`} />
+        <meta property="og:image" content={product.photo2 || "https://haji-jewellers.online/images/default-product.jpg"} />
+        <meta property="og:type" content="product" />
+        <meta property="og:url" content={`https://haji-jewellers.online/product/${params.slug}`} />
+      </Helmet>
+
       <div className="container product-details">
         <div className="row">
           <div className="col-md-6">
@@ -55,13 +70,9 @@ const ProductDetails = () => {
             />
           </div>
           <div className="col-md-6 product-details-info">
-            <h1>Product Details</h1>
+            <h1>{product.name}</h1>
             <hr />
-            {/* Updated: Display details in a structured format */}
             <div className="product-info">
-              <p>
-                <strong>Name:</strong> {product.name}
-              </p>
               <p>
                 <strong>Description:</strong> {product.description}
               </p>
@@ -146,3 +157,4 @@ const ProductDetails = () => {
 };
 
 export default ProductDetails;
+

@@ -53,7 +53,7 @@ const Header = () => {
                 <i className="fa-brands fa-facebook me-2" />
               </a>
               <a
-                href="https://www.instagram.com/wahidaali13/"
+                href="https://www.instagram.com/hajijewellers2022/"
                 className="text-white"
               >
                 <i className="fa-brands fa-instagram me-2" />

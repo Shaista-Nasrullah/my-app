@@ -213,7 +213,7 @@ const HomePage = () => {
                 key={p._id}
                 onClick={() => navigate(`/product/${p.slug}`)}
               >
-                <img src={p.photo2} alt={p.name} />
+                <img className="product-image" src={p.photo2} alt={p.name} />
                 <div>
                   <h3>{p.name}</h3>
                   <p>{p.description}</p>
@@ -243,7 +243,7 @@ const HomePage = () => {
                   <button
                     className="buy-design"
                     onClick={(e) => {
-                      e.stopPropagation(); // Prevents card click event
+                      e.stopPropagation();
                       addToCart(p);
                     }}
                   >

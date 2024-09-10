@@ -4,11 +4,12 @@
 }
 
 /* Product image styling */
-/* .product-details img {
+.card-img-top {
   width: 100%;
   height: auto;
   object-fit: cover;
 }
+
 
 /* Styling for product details info section */
 .product-details-info {
@@ -216,6 +217,7 @@ li{
   border-bottom-right-radius: 20px;
   background: #0b0b0b;
 }
+
 @media(max-width: 1000px){
   .content{
     width: 45%;

@@ -9,7 +9,8 @@ const Footer = () => {
       </h4>
       <p className="text-center mt-3">
         <Link to="/about">About Us</Link>|<Link to="/contact">Contact Us</Link>|
-        <Link to="/policy"> Privacy Policy</Link>
+        <Link to="/policy"> Privacy Policy</Link>|
+        <Link to="/services">Our Services</Link>
       </p>
     </div>
   );

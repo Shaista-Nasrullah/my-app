@@ -120,6 +120,10 @@ li {
   transform: scale(1.3);
   transition: .6s;
 }
+.product-image{      
+  height: auto;        
+  object-fit: cover;
+}
 
 .buy-design {
   text-align: center;

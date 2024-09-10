@@ -1,0 +1,36 @@
+/* General Container Styling */
+.services-page {
+  padding: 20px;
+}
+
+.services-header {
+  margin-bottom: 20px;
+}
+
+.video-placeholder {
+  margin: 20px 0;
+}
+
+.video-container {
+  position: relative;
+  width: 100%;
+  /* max-width: 600px; */
+  margin: 0 auto;
+}
+
+.video-thumbnail {
+  width: 100%;
+  height: auto;
+}
+
+/* Service Items */
+.service-item {
+  margin-bottom: 20px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .service-item {
+    text-align: center;
+  }
+}
