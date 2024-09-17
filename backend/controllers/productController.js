@@ -29,15 +29,7 @@ export const createProductController = async (req, res) => {
         message: "All fields are required!",
       });
     }
-    const existingProduct = await productModel.findOne({
-      $or: [{ name }, { description }],
-    });
-    if (existingProduct) {
-      return res.status(409).send({
-        success: true,
-        message: "Product already exists with this name or slug",
-      });
-    }
+   
 
     const photooneLocalPath = req.files?.photo2?.[0]?.path;
 
@@ -53,28 +45,20 @@ export const createProductController = async (req, res) => {
 
     if (!photooneLocalPath) {
       return res.status(400).send({
-        message: "Second photo of product is required",
+        message: "First photo of product is required",
       });
     }
-    // if (!phototwoLocalPath) {
-    //   return res.status(400).send({
-    //     message: "Third photo of product is required",
-    //   });
-    // }
+   
 
     const photo2 = await uploadOnCloudinary(photooneLocalPath);
     if (!photo2) {
       return res.status(400).send({
-        message: "Error uploading the second photo",
+        message: "Error uploading the first photo",
       });
     }
 
     const photo3 = await uploadOnCloudinary(phototwoLocalPath);
-    // if (!photo3) {
-    //   return res.status(400).send({
-    //     message: "Error uploading the third photo",
-    //   });
-    // }
+  
 
     const product = await productModel.create({
       name,
