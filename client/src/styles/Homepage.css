@@ -121,7 +121,8 @@ li {
   transition: .6s;
 }
 .product-image{      
-  height: auto;        
+  height: 240px; 
+  width: 100%;       
   object-fit: cover;
 }
 
@@ -160,6 +161,11 @@ li {
 
   .home-page button {
     font-size: 12px; /* Adjust button font size for mobile */
+  }
+
+  .product-image{      
+    height: auto;        
+    object-fit: cover;
   }
 
   .loadmore {

@@ -1,48 +1,46 @@
 import { v2 as cloudinary } from "cloudinary";
 import fs from "fs";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 cloudinary.config({
-  // cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
-  // api_key: process.env.CLOUDINARY_API_KEY,
-  // api_secret: process.env.CLOUDINARY_API_SECRET,
-
-  cloud_name: "doa1biaa4",
-  api_key: "227189214514844",
-  api_secret: "ZpYth_iAZnM56-wgjV0jzHXIXL8",
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
 const uploadOnCloudinary = async (localFilePath) => {
   try {
     if (!localFilePath) {
       console.log("Local file path is not defined.");
-      return null;
+      return { error: true, message: "Local file path not provided" };
     }
 
     console.log("Uploading file to Cloudinary:", localFilePath);
 
-    // Check if the file exists before attempting to upload
     if (!fs.existsSync(localFilePath)) {
       console.log("File does not exist:", localFilePath);
-      return null;
+      return { error: true, message: "File does not exist" };
     }
 
-    // Upload the file to Cloudinary
     const response = await cloudinary.uploader.upload(localFilePath, {
       resource_type: "auto",
     });
 
-    // File has been uploaded successfully
-    // console.log("File uploaded to Cloudinary:", response.url);
-    fs.unlinkSync(localFilePath);
+    fs.unlinkSync(localFilePath); // Safely delete the local file
     return response;
+
   } catch (error) {
     console.error("Error uploading to Cloudinary:", error);
-    // Remove the locally saved temporary file if the upload operation failed
+
     if (fs.existsSync(localFilePath)) {
-      fs.unlinkSync(localFilePath);
+      fs.unlinkSync(localFilePath); // Ensure file is deleted in case of failure
     }
-    return null;
+
+    return { error: true, message: error.message };
   }
 };
 
 export { uploadOnCloudinary };
+

@@ -213,7 +213,11 @@ const HomePage = () => {
                 key={p._id}
                 onClick={() => navigate(`/product/${p.slug}`)}
               >
-                <img className="product-image" src={p.photo2} alt={p.name} />
+                <img
+                  src={p.photo2}
+                  className="product-image"
+                  alt={p.name}
+                />
                 <div>
                   <h3>{p.name}</h3>
                   <p>{p.description}</p>
