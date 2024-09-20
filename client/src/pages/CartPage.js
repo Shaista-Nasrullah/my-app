@@ -18,30 +18,20 @@ const CartPage = () => {
   const navigate = useNavigate();
 
   const totalPrice = () => {
-    try {
-      let total = 0;
-      cart?.map((item) => {
-        total += item.price;
-      });
-      return total.toLocaleString("en-PK", {
-        style: "currency",
-        currency: "PKR",
-      });
-    } catch (error) {
-      //console.log(error);
-    }
+    let total = 0;
+    cart.forEach((item) => {
+      total += item.price;
+    });
+    return total.toLocaleString("en-PK", {
+      style: "currency",
+      currency: "PKR",
+    });
   };
 
   const removeCartItem = (pid) => {
-    try {
-      let myCart = [...cart];
-      let index = myCart.findIndex((item) => item._id === pid);
-      myCart.splice(index, 1);
-      setCart(myCart);
-      localStorage.setItem("cart", JSON.stringify(myCart));
-    } catch (error) {
-      //console.log(error);
-    }
+    const updatedCart = cart.filter((item) => item._id !== pid);
+    setCart(updatedCart);
+    localStorage.setItem("cart", JSON.stringify(updatedCart));
   };
 
   const getToken = async () => {
@@ -51,7 +41,7 @@ const CartPage = () => {
       );
       setClientToken(data?.clientToken);
     } catch (error) {
-      //console.log(error);
+      console.error(error);
     }
   };
 
@@ -60,9 +50,9 @@ const CartPage = () => {
   }, [auth?.token]);
 
   const handlePayment = async () => {
+    setLoading(true);
     try {
-      setLoading(true);
-      let nonce = null;
+      let nonce;
       if (paymentMethod === "Braintree") {
         const { nonce: generatedNonce } = await instance.requestPaymentMethod();
         nonce = generatedNonce;
@@ -81,7 +71,7 @@ const CartPage = () => {
       navigate("/dashboard/user/orders");
       toast.success("Order placed successfully");
     } catch (error) {
-      console.log(error);
+      console.error(error);
       setLoading(false);
     }
   };
@@ -95,7 +85,7 @@ const CartPage = () => {
               {`Hello ${auth?.token && auth?.user?.name}`}
             </h1>
             <h4 className="text-center">
-              {cart?.length
+              {cart.length
                 ? `You Have ${cart.length} items in your cart ${
                     auth?.token ? "" : "please login to checkout"
                   }`
@@ -106,7 +96,7 @@ const CartPage = () => {
         <div className="container">
           <div className="row">
             <div className="col-md-7 col-sm-12 p-0 m-0">
-              {cart?.map((p) => (
+              {cart.map((p) => (
                 <div className="row card flex-row" key={p._id}>
                   <div className="col-4">
                     <img
@@ -114,7 +104,7 @@ const CartPage = () => {
                       className="card-img-top"
                       alt={p.name}
                       width="100%"
-                      height={"130px"}
+                      height="130px"
                     />
                   </div>
                   <div className="col-5">
@@ -137,20 +127,18 @@ const CartPage = () => {
               <h2>Cart Summary</h2>
               <p>Total | Checkout | Payment</p>
               <hr />
-              <h4>Total: {totalPrice()} </h4>
+              <h4>Total: {totalPrice()}</h4>
               {auth?.user?.address ? (
-                <>
-                  <div className="mb-3">
-                    <h4>Current Address</h4>
-                    <h5>{auth?.user?.address}</h5>
-                    <button
-                      className="btn btn-outline-warning"
-                      onClick={() => navigate("/dashboard/user/profile")}
-                    >
-                      Update Address
-                    </button>
-                  </div>
-                </>
+                <div className="mb-3">
+                  <h4>Current Address</h4>
+                  <h5>{auth?.user?.address}</h5>
+                  <button
+                    className="btn btn-outline-warning"
+                    onClick={() => navigate("/dashboard/user/profile")}
+                  >
+                    Update Address
+                  </button>
+                </div>
               ) : (
                 <div className="mb-3">
                   {auth?.token ? (
@@ -163,11 +151,7 @@ const CartPage = () => {
                   ) : (
                     <button
                       className="btn btn-outline-warning"
-                      onClick={() =>
-                        navigate("/login", {
-                          state: "/cart",
-                        })
-                      }
+                      onClick={() => navigate("/login", { state: "/cart" })}
                     >
                       Please Login to checkout
                     </button>
@@ -221,7 +205,7 @@ const CartPage = () => {
 
                 {paymentMethod === "Braintree" &&
                   clientToken &&
-                  cart?.length > 0 && (
+                  cart.length > 0 && (
                     <DropIn
                       options={{
                         authorization: clientToken,
