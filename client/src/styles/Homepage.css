@@ -160,7 +160,7 @@ li {
   }
 
   .home-page button {
-    font-size: 12px; /* Adjust button font size for mobile */
+    font-size: 12px; 
   }
 
   .product-image{      
@@ -169,7 +169,7 @@ li {
   }
 
   .loadmore {
-    font-size: 16px; /* Adjust font size of the load more button */
+    font-size: 16px; 
   }
 
   .home-page {
@@ -178,12 +178,12 @@ li {
   }
 
   .home-page .card {
-    width: 100%; /* Make the card take full width on smaller screens */
+    width: 100%; 
     margin: 1rem 0;
   }
 
   .filters {
-    display: none; /* Hide filters section on smaller screens */
+    display: none; 
   }
 }
 
