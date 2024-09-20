@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext, createContext } from "react";
+import React, { useState, useEffect, useContext, createContext } from "react"; // Added React import
 import axios from "axios";
 
 const AuthContext = createContext();
@@ -9,7 +9,7 @@ const AuthProvider = ({ children }) => {
     token: "",
   });
 
-  //default axios
+  // Default axios
   axios.defaults.headers.common["Authorization"] = auth?.token;
   console.log("Token:", auth?.token);
 
@@ -23,17 +23,17 @@ const AuthProvider = ({ children }) => {
         token: parseData.token,
       });
     }
-    //eslint-disable-next-line
+    // eslint-disable-next-line
   }, []);
+
   return (
-    
     <AuthContext.Provider value={[auth, setAuth]}>
       {children}
     </AuthContext.Provider>
   );
 };
 
-//custom hook
+// Custom hook
 const useAuth = () => useContext(AuthContext);
 
 export { useAuth, AuthProvider };

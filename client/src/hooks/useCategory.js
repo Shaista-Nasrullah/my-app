@@ -1,10 +1,10 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react"; // Added React import
 import axios from "axios";
 
 export default function useCategory() {
   const [categories, setCategories] = useState([]);
 
-  //get categories
+  // Get categories
   const getCategories = async () => {
     try {
       const { data } = await axios.get(
@@ -15,6 +15,7 @@ export default function useCategory() {
       console.log(error);
     }
   };
+
   useEffect(() => {
     getCategories();
   }, []);
