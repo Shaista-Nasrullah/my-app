@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import Layout from "../components/Layout/Layout";
 import { useSearch } from "../context/search";
 import { useNavigate } from "react-router-dom";
@@ -62,22 +62,22 @@ const Search = () => {
                     : "Price not available"}
                 </h6>
                 <ul>
-                    <li>
-                      <i className="fa fa-star checked"></i>
-                    </li>
-                    <li>
-                      <i className="fa fa-star checked"></i>
-                    </li>
-                    <li>
-                      <i className="fa fa-star checked"></i>
-                    </li>
-                    <li>
-                      <i className="fa fa-star checked"></i>
-                    </li>
-                    <li>
-                      <i className="fa fa-star"></i>
-                    </li>
-                  </ul>
+                  <li>
+                    <i className="fa fa-star checked"></i>
+                  </li>
+                  <li>
+                    <i className="fa fa-star checked"></i>
+                  </li>
+                  <li>
+                    <i className="fa fa-star checked"></i>
+                  </li>
+                  <li>
+                    <i className="fa fa-star checked"></i>
+                  </li>
+                  <li>
+                    <i className="fa fa-star"></i>
+                  </li>
+                </ul>
               </div>
               <button
                 className="product-design"

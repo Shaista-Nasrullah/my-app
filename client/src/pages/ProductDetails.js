@@ -1,3 +1,4 @@
+import React from "react";
 import React, { useState, useEffect } from "react";
 import Layout from "../components/Layout/Layout";
 import axios from "axios";
@@ -46,18 +47,49 @@ const ProductDetails = () => {
       <Helmet>
         <meta charSet="utf-8" />
         {/* SEO Meta Tags */}
-        <meta name="description" content={`${product.name} - ${product.description}. Buy now at Haji Jewellers. Price: ${product?.price?.toLocaleString("en-PK", { style: "currency", currency: "PKR" })}.`} />
-        <meta name="keywords" content={`${product.name}, ${product.category?.name}, jewelry, Haji Jewellers, buy ${product.name}, ${product.category?.name} jewelry`} />
+        <meta
+          name="description"
+          content={`${product.name} - ${
+            product.description
+          }. Buy now at Haji Jewellers. Price: ${product?.price?.toLocaleString(
+            "en-PK",
+            { style: "currency", currency: "PKR" }
+          )}.`}
+        />
+        <meta
+          name="keywords"
+          content={`${product.name}, ${product.category?.name}, jewelry, Haji Jewellers, buy ${product.name}, ${product.category?.name} jewelry`}
+        />
         <meta name="author" content="Haji Jewellers" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>{product.name} | Product Details | Haji Jewellers</title>
 
         {/* Open Graph Meta Tags for Social Media */}
-        <meta property="og:title" content={`${product.name} | Product Details | Haji Jewellers`} />
-        <meta property="og:description" content={`${product.name} - ${product.description}. Buy now at Haji Jewellers. Price: ${product?.price?.toLocaleString("en-PK", { style: "currency", currency: "PKR" })}.`} />
-        <meta property="og:image" content={product.photo2 || "https://haji-jewellers.online/images/default-product.jpg"} />
+        <meta
+          property="og:title"
+          content={`${product.name} | Product Details | Haji Jewellers`}
+        />
+        <meta
+          property="og:description"
+          content={`${product.name} - ${
+            product.description
+          }. Buy now at Haji Jewellers. Price: ${product?.price?.toLocaleString(
+            "en-PK",
+            { style: "currency", currency: "PKR" }
+          )}.`}
+        />
+        <meta
+          property="og:image"
+          content={
+            product.photo2 ||
+            "https://haji-jewellers.online/images/default-product.jpg"
+          }
+        />
         <meta property="og:type" content="product" />
-        <meta property="og:url" content={`https://haji-jewellers.online/product/${params.slug}`} />
+        <meta
+          property="og:url"
+          content={`https://haji-jewellers.online/product/${params.slug}`}
+        />
       </Helmet>
 
       <div className="container product-details">
@@ -157,4 +189,3 @@ const ProductDetails = () => {
 };
 
 export default ProductDetails;
-
