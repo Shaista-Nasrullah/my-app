@@ -1,11 +1,10 @@
-import React from "react";
 import React, { useState, useEffect } from "react";
 import Layout from "../components/Layout/Layout";
 import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import { useCart } from "../context/ProductCard";
-import { Helmet } from "react-helmet"; // Import Helmet for SEO
+import { Helmet } from "react-helmet";
 import "../styles/ProductDetailsStyles.css";
 
 const ProductDetails = () => {
