@@ -1,4 +1,4 @@
-import { useState, useContext, createContext } from "react";
+import React, { useState, useContext, createContext } from "react"; // Import React here
 
 const SearchContext = createContext();
 
@@ -15,7 +15,7 @@ const SearchProvider = ({ children }) => {
   );
 };
 
-//custom hook
+// Custom hook
 const useSearch = () => useContext(SearchContext);
 
 export { useSearch, SearchProvider };
